@@ -1,0 +1,24 @@
+name: Assert No Trailing Whitespace
+description: Simple action to check files for trailing whitespace.
+author: Alexander Kosnac
+
+inputs:
+  path:
+    description: The directory to scan for trailing whitespace. Defaults to the repository root.
+    required: true
+    default: .
+  extensions:
+    description: Comma separated list of file extensions to consider. Leave empty to scan all files. Defaults to all.
+    required: true
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Python
+      shell: bash
+      run: sudo apt-get update && sudo apt-get install -y python3
+
+    - name: Check for whitespace
+      shell: bash
+      run: python3 $GITHUB_ACTION_PATH/check-files-for-whitespace.py "${{ inputs.path }}" "${{ inputs.extensions }}"
