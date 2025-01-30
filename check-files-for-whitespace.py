@@ -26,7 +26,7 @@ def file_lines(filepath):
 
 
 def has_trailing_whitespace(line):
-    return re.search(r"[ \t]+$", line)  
+    return re.search(r"[ \t]+$", line)
 
 
 if __name__ == "__main__":
